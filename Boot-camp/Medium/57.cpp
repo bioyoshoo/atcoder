@@ -4,19 +4,15 @@ using namespace std;
 int main() {
     int N;
     cin >> N;
-    map<string, int> DB;
+    map<string, int64_t> mp;
     for (int i = 0; i < N; i++) {
         string S;
         cin >> S;
-
         sort(S.begin(), S.end());
-
-        if (DB.count(S)) DB.at(S)++;
-        else DB[S] = 1;
+        mp[S]++;
     }
 
     int64_t ans = 0;
-    for (auto db: DB) ans += (db.second) * (db.second - 1) / 2;
-
+    for (auto m: mp) ans += (int64_t)(m.second * (m.second - 1)) / 2;
     cout << ans << endl;
 }
