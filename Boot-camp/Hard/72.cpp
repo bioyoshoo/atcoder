@@ -16,7 +16,7 @@ int main() {
             int64_t devo = 4 * h * n - N * h - N * n;
             if (devo <= 0) continue;
             long double w = (long double)(N * h * n) / devo;
-            if (is_int(w)) {
+            if (is_int(w) && w <= 3500) {
                 cout << h << " " <<  n << " " << (int64_t)w << endl;
                 flag = true;
                 break;
