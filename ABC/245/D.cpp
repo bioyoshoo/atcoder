@@ -8,17 +8,12 @@ int main() {
     for (int i = 0; i <= N; i++) cin >> A.at(i);
     for (int i = 0; i <= N + M; i++) cin >> C.at(i);
 
-    
     // cの係数 n次の係数について
-   for (int64_t n = N + M; n >= N - 1; n--) {
-        // aの係数を固定
-        int64_t sum = 0;
-        for (int64_t b = n - 1; b >= 0; b--) {
-            int64_t a = n - b;
-            if (a > N) continue;
-            sum += A.at(a) * B.at(b);
+    for (int i = M; i >= 0; i--) {
+        B[i] = C[i + N] / A[N];
+        for (int j = 0; j <= N; j++) {
+            C[i + j] -= B[i] * A[j];
         }
-        B.at(n - N) = (C.at(n) - sum) / A.at(n - N);
     }
     for (int i = 0; i < M + 1; i++) cout << B.at(i) << " ";
     cout << endl;
