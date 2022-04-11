@@ -9,23 +9,19 @@ long double sum(int n) {
 int main() {
     int N, K;
     cin >> N >> K;
-    vector<long double> P(N);
-    for (int i = 0; i < N; i++) {
+    vector<long double> P(N + 1);
+    P.at(0) = 0;
+    for (int i = 1; i <= N; i++) {
         int p;
         cin >> p;
         P.at(i) = sum(p) / p;
     }
     
-    for (int i = 1; i < N; i++) P.at(i) += P.at(i - 1);
+    for (int i = 1; i <= N; i++) P.at(i) += P.at(i - 1);
     long double ans = 0;
-    for (int i = 0; i < N; i++) {
-        if (i + K > N) continue;
-
-        long double tmp = 0;
-        for (int j = 0; j < K; j++) {
-            tmp += sum(P.at(i + j)) / P.at(i + j);
-        }
-        ans = max(ans, tmp);
+    for (int i = 1; i <= N; i++) {
+        if (i + K - 1 > N) continue;
+        ans = max(ans, P.at(i + K - 1) - P.at(i - 1));
     }
 
     cout << fixed << setprecision(12);
