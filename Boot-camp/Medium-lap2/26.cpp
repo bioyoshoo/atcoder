@@ -4,25 +4,25 @@ using namespace std;
 int main() {
     int N;
     cin >> N;
-    vector<int64_t> A(N), diff;
+    vector<int64_t> A(N);
     for (int i = 0; i < N; i++) cin >> A.at(i);
-    for (int i = 0; i < N - 1; i++) {
-        if (A.at(i + 1) - A.at(i) == 0) continue;
 
-        if (A.at(i + 1) - A.at(i) > 0) diff.push_back(1);
-        else diff.push_back(-1);
-    }
-    int n = diff.size();
-    
-    int right = 0;
-    int ans = 0;
-    for (int left = 0; left < n;) {
+    int64_t ans = 0;
+    for (int i = 0; i < N;) {
+
+        if (i + 1 < N && A[i] == A[i + 1]) {
+            while (i + 1 < N && A[i] == A[i + 1]) i++;
+        }
         
-        while (diff[left] == diff[right] && right < n) right++;
-        ans += 1;
+        if (i + 1 < N && A[i] <= A[i + 1]) {
+            while (i + 1 < N && A[i] <= A[i + 1]) i++;
+        }
+        else if (i + 1 < N && A[i] >= A[i]) {
+            while (i + 1 < N && A[i] >= A[i + 1]) i++;
+        }
 
-        if (left == right) right++;
-        left = right;
+        i++;
+        ans++;
     }
 
     cout << ans << endl;
