@@ -21,10 +21,5 @@ int main() {
         for (int i = 0; i < N - 1; i++) ans -= Gap.at(i);
     }
         
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 360e01459e0d6390f3859a80197c3f887d9b6d45
     cout << ans << endl;
 }
