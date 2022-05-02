@@ -15,18 +15,17 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
-
-
-	"fetchPost":{//スニペットの名前
-		"prefix":"atcoder-head",//スニペットのprefix これだけ打ってctrl + Tabで呼び出せる
-		"body":[//実際に出力される部分。文字列の配列で宣言
-			"#include <bits/stdc++.h>",
-			"using namespace std;",
-			"",
-			"int main() {",
-			"\t",
+	"fetchPost":{
+		"prefix":"chmin",
+		"body":[
+			"template<class T> bool chmin(T &a, T b) {",
+			"\tif (a > b) {",
+			"\t\ta = b;",
+			"\t\treturn true;",
+			"\t}",
+			"\telse return false;",
 			"}"
 			],
-	"description": "atcoder header"//表示される説明文
+	"description": "chmin"
 	}
 }

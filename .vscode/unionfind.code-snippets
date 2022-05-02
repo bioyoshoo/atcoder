@@ -15,18 +15,36 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
-
-
-	"fetchPost":{//スニペットの名前
-		"prefix":"atcoder-head",//スニペットのprefix これだけ打ってctrl + Tabで呼び出せる
-		"body":[//実際に出力される部分。文字列の配列で宣言
-			"#include <bits/stdc++.h>",
-			"using namespace std;",
+	"fetchPost":{
+		"prefix":"unionfind",
+		"body":[
+			"struct UnionFind {",
+			"\tvector<int> par, siz;",
+			"\tUnionFind(int n) : par(n, -1), siz(n, 1) { };",
 			"",
-			"int main() {",
-			"\t",
-			"}"
+			"\tint root(int x) {",
+			"\t\tif (par[x] == -1) return x;",
+			"\t\telse return par[x] = root(par[x]);",
+			"\t}",
+			"",
+			"\tbool issame(int x, int y) {",
+			"\t\treturn root(x) == root(y);",
+			"\t}",
+			"",
+			"\tbool unite(int x, int y) {",
+			"\t\tx = root(x); y = root(y);",
+			"\t\tif (x == y) return false;",
+			"\t\tif (siz[x] < siz[y]) swap(x, y);",
+			"\t\tpar[y] = x;",
+			"\t\tsiz[x] += siz[y];",
+			"\t\treturn true;",
+			"\t}",
+			"",
+			"\tint size(int x) {",
+			"\t\treturn siz[root(x)];",
+			"\t}",
+			"};"
 			],
-	"description": "atcoder header"//表示される説明文
+	"description": "unionfind"
 	}
 }
