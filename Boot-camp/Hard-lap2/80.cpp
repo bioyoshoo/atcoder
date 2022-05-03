@@ -2,16 +2,20 @@
 using namespace std;
 
 int main() {
-    int64_t N, K;
+    int N, K;
     cin >> N >> K;
 
     int64_t ans = 0;
-    for (int64_t b = 1; b <= N; b++) {
-        if (K >= b) continue;
-        int64_t n_per_loop = b - K;
-        ans += n_per_loop * N / b;
-        if (K > 0) ans += max((int64_t)0, N % b - K + 1);
+    if (K != 0) {
+        for (int b = 1; b <= N; b++) {
+            if (K >= b) continue;
+            int64_t m = (N + 1) / b;
+            ans += m * (b - K);
+            int64_t L = m * b + K;
+            int64_t R = N;
+            if (L <= R) ans += R - L + 1;
+        }
     }
-
+    else ans = N * N;
     cout << ans << endl;
 }
