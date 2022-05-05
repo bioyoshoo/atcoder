@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int MAX = 1e5;
 
 int main() {
     int N;
