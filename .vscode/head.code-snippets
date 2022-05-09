@@ -22,6 +22,7 @@
 		"body":[//実際に出力される部分。文字列の配列で宣言
 			"#include <bits/stdc++.h>",
 			"using namespace std;",
+			"using ll = long long;",
 			"",
 			"int main() {",
 			"\t",
