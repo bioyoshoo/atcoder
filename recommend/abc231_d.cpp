@@ -1,42 +1,54 @@
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
-using Graph = vector<vector<int>>;
 
-vector<bool> seen;
-bool DFS(const Graph &G, int v) {
-    if (seen[v]) return true;
-    else seen[v] = true;
+struct Unionfind {
+    vector<int> par, siz;
+    
+    Unionfind(int n): par(n, -1), siz(n, 1) {};
 
-    for (auto next_v: G[v]) {
-        if (DFS(G, next_v)) return true;
+    int root(int x) {
+        if (par[x] == -1) return x;
+        else return par[x] = root(par[x]);
     }
-    return false;
-}
+
+    bool issame(int x, int y) {
+        return root(x) == root(y);
+    }
+
+    bool unite(int x, int y) {
+        x = root(x); y = root(y);
+        if (x == y) return false;
+        if (siz[y] > siz[x]) swap(x, y);
+        par[y] = x;
+        siz[x] += siz[y];
+        return true;
+    }
+
+    int size(int x) {
+        return siz[root(x)];
+    }
+};
 
 int main() {
     int N, M;
     cin >> N >> M;
-    vector<vector<int>> table(N);
+    vector<int> deg(N);
+    Unionfind uf(N);
+    bool ans = true;
     for (int i = 0; i < M; i++) {
         int a, b;
         cin >> a >> b;
         a--; b--;
-        table[a].push_back(b);
-        table[b].push_back(a);
+        if (uf.issame(a, b)) {
+            ans = false;
+            break;
+        }
+        else uf.unite(a, b);
+        deg[a]++;
+        deg[b]++;
     }
-    bool ans = true;
-    
-    for (int i = 0; i < N; i++) {
-        int size = table[i].size();
-        if (size > 2) ans = false;
-    }
-    
-    seen.assign(N, false);
-    for (int v = 0; v < N; v++) {
-        if (seen[v]) continue;
-        if (DFS(table, v)) ans = false;
-    }
+    for (int i = 0; i < N; i++) if (deg[i] >= 3) ans = false;
 
     if (ans) cout << "Yes" << endl;
     else cout << "No" << endl;
