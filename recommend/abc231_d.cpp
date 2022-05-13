@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <atcoder/all>
 using namespace std;
 using ll = long long;
 using Graph = vector<vector<int>>;
@@ -27,8 +28,7 @@ int main() {
     }
     bool ans = true;
     
-    for (int i = 0; i < N; i++) {
-        int size = table[i].size();
+    for (int i = 0; i < N; i++) 
         if (size > 2) ans = false;
     }
     
