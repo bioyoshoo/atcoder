@@ -1,24 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
+#include <atcoder/all>
+using namespace atcoder;
+using ll = long long;
+#define rep(i, n) for (int i = 0; i < (n); i++)
 
 int main() {
-    int N, M;
-    cin >> N >> M;
-    map<pair<int, int>, int> mp;
+    ll N, M; cin >> N >> M;
+    vector<ll> cnt(2, 0);
     for (int i = 0; i < N; i++) {
-        string s; cin >> s;
-        int zero = 0, one = 0;
-        for (auto c: s) {
-            if (c == '0') zero++;
-            else one++;
-        }
-        pair<int, int> p = {zero, one};
-        mp[p]++;
+        string S; cin >> S;
+        ll cnt_one = 0;
+        for (int j = 0; j < M; j++) if (S[j] == '1') cnt_one++;
+        cnt[cnt_one % 2]++;
     }
-    long long ans = 0;
-    for (auto m: mp) {
-        ans += (N - m.second) * m.second;
-    }
-    ans /= 2;
+    ll ans = 1;
+    ans = cnt[0] * cnt[1];
     cout << ans << endl;
 }
