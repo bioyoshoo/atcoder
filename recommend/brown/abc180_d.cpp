@@ -6,14 +6,15 @@ using ll = long long;
 #define rep(i, n) for (int i = 0; i < (n); i++)
 
 int main() {
-    ll N;
-    cin >> N;
+    ll X, Y, A, B; cin >> X >> Y >> A >> B;
 
+    long double x = B / (A - 1);
+    ll power = X;
     ll ans = 0;
-    for (ll n = 1; n * n <= N; n++) ans += N / n;
-    for (ll x = 1; x * x < N; x++) {
-        ll L = N / (x + 1), R = N / x;
-        ans += x * (R - L);
+    while (power <= x && A * power < Y) {
+        power = A * power;
+        ans++;
     }
+    ans += (Y - power - 1) / B;
     cout << ans << endl;
 }
