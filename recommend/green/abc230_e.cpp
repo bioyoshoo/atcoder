@@ -9,9 +9,15 @@ int main() {
     ll N;
     cin >> N;
 
+    ll k;
+    for (ll i = 1; i <= N; i++) {
+        if (i * i <= N) k = i;
+        else break;
+    }
+
     ll ans = 0;
-    for (ll n = 1; n * n <= N; n++) ans += N / n;
-    for (ll x = 1; x * x < N; x++) {
+    for (ll n = 1; n <= N / (k + 1); n++) ans += N / n;
+    for (ll x = 1; x <= k; x++) {
         ll L = N / (x + 1), R = N / x;
         ans += x * (R - L);
     }
