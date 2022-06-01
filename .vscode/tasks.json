@@ -39,6 +39,8 @@
             "command": "oj",
             "args": [
                 "t",
+                "-S",
+                "-N",
                 "-c",
                 "'${workspaceFolder}/problem.exe'"
             ],
