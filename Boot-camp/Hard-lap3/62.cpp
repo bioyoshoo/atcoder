@@ -12,18 +12,40 @@ int main() {
     vector<vector<int>> R(H, vector<int>(W)), C(H, vector<int>(W));
 
     for (int i = 0; i < H; i++) {
-        int cnt = 0;
-        int left = 0, right = 0;
+        int right = 0;
         for (int left = 0; left < W;) {
-            while (right < N && S[left] == S[right]) {
+            int cnt = 0;
+            while (right < W && S[i][left] == S[i][right]) {
                 right++;
                 cnt++;
             }
-            if (S[left] == '.') {
-                for (int j = left; j < right; j++) R[i][j] = 
+            if (S[i][left] == '.') {
+                for (int j = left; j < right; j++) R[i][j] = right - left;
             }
-            if (right == left) right++;
             left = right;
         }
     }
+
+    for (int j = 0; j < W; j++) {
+        int right = 0;
+        for (int left = 0; left < H;) {
+            int cnt = 0;
+            while (right < H && S[left][j] == S[right][j]) {
+                right++;
+                cnt++;
+            }
+            if (S[left][j] == '.') {
+                for (int i = left; i < right; i++) C[i][j] = right - left;
+            }
+            left = right;
+        }
+    }
+
+    int ans = -1;
+    rep(i, H) {
+        rep(j, W) {
+            ans = max(ans, R[i][j] + C[i][j] - 1);
+        }
+    }
+    cout << ans << endl;
 }
