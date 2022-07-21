@@ -10,7 +10,9 @@ int main() {
     ll a, b; cin >> N >> a >> b;
     vector<ll> A(N); rep(i, N) cin >> A[i];
 
-    ll bottom = 0, top = 1e18;
+    ll bottom = 0, top = 0;
+    rep(i, N) top = max(top, A[i]);
+
     while (top - bottom > 1) {
         ll x = bottom + (top - bottom) / 2;
 
@@ -23,14 +25,6 @@ int main() {
         if (up <= down) bottom = x;
         else top = x;
     }
-    
-    ll up = 0, down = 0;
-    rep(i, N) {
-        if (bottom > A[i]) up += ((bottom - A[i]) + a - 1) / a;
-        if (bottom < A[i]) down += (A[i] - bottom) / b;
-    }
-    sort(A.begin(), A.end());
-    
     
     cout << bottom << endl;
 }
