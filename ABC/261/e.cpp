@@ -24,10 +24,9 @@ int main() {
 
     ll ans = C;
     rep(i, N) {
-        if (i == 0 && T[0] == 1) ans = ans & B[i];
-        else if (i == 0 && T[0] == 2) ans = ans | B[i];
-        else if (i == 0 && T[0] == 3) ans = ans ^ B[i];
-        else if (i != 0 && T[0] == 3) ans = ans | B[i];
+        if (T[0] == 1) ans = ans & B[i];
+        else if (T[0] == 2) ans = ans | B[i];
+        else if (T[0] == 3) ans = ans ^ B[i];
         cout << ans << endl;
     }
 }
