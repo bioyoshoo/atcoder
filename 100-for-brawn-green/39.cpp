@@ -13,6 +13,8 @@ int main() {
     cin >> sum;
 
     ll dp[110][30];
+    memset(dp, 0, sizeof(dp));
+    
     dp[0][V[0]] = 1;
 
     for (int i = 1; i < N - 1; i++) {
@@ -22,4 +24,5 @@ int main() {
         }
     }
 
+    cout << dp[N - 2][sum] << endl;
 }
