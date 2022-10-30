@@ -14,7 +14,7 @@ int main() {
 
     if (0 < Y && Y < X) {
         if (Y < Z) cout << -1 << endl;
-    else cout << abs(Z) + abs(X - Z) << endl;
+        else cout << abs(Z) + abs(X - Z) << endl;
     }
     else cout << X << endl;
 }
