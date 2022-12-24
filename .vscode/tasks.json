@@ -29,14 +29,14 @@
             "command": "bash",
             "args": [
                 "-c",
-                "test ${input:problemUrl} && rm -f test/*.in test/*.out && oj d ${input:problemUrl} || true",
+                "test ${input:problemUrl} && rm -f test/*.in test/*.out && /home/yoshoo/anaconda3/bin/oj d ${input:problemUrl} || true",
             ],
             "problemMatcher": []
         },
         {
             "type": "shell",
             "label": "do oj test",
-            "command": "oj",
+            "command": "/home/yoshoo/anaconda3/bin/oj",
             "args": [
                 "t",
                 "-S",
