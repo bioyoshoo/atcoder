@@ -7,5 +7,9 @@ using ll = long long;
 
 int main() {
     ll N; cin >> N;
+<<<<<<< HEAD
     cout << N * (N - 1) / 2 << endl;
+=======
+    cout << N*(N - 1) / 2 << endl;
+>>>>>>> bc9a185f6f7513da0bc977790ba6c67c254988b0
 }

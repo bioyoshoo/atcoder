@@ -68,5 +68,4 @@ int main() {
     }
     if (uf.root(start) == uf.root(goal)) cout << "Yes" << endl;
     else cout << "No" << endl;
->>>>>>> 566ad73e9f7771650243953f078462c3c19878b3
 }

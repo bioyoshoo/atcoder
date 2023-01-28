@@ -11,6 +11,7 @@ int main() {
     rep(i, R) rep(j, C) cin >> T[i][j];
 
     int ans = 0;
+<<<<<<< HEAD
     // i: 行の状態
     for (ll i = 0; i < (1LL << R); i++) {
         int cnt = 0;
@@ -29,3 +30,23 @@ int main() {
 
     cout << ans << endl;
 }
+=======
+    for (ll i = 0; i < (1LL << R); i++) {
+        set<int> st;
+        rep(j, R) if (i & (1LL << j)) st.insert(j);
+
+        int sum = 0;
+        rep(j, C) {
+            int cnt = 0;
+            rep(k, R) {
+                if (!st.count(k) && T[k][j] == 1) cnt++;
+                else if (st.count(k) && T[k][j] == 0) cnt++;
+            }
+            sum += max(cnt, R - cnt);
+        }
+
+        ans = max(ans, sum);
+    }
+    cout << ans << endl;
+}
+>>>>>>> bc9a185f6f7513da0bc977790ba6c67c254988b0
