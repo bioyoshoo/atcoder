@@ -10,21 +10,27 @@ int main() {
 
     rep(t, T) {
         int N, M; cin >> N >> M;
-        ll prev_B_last = 0, prev_C_last = 0;
+        ll B = 0, A = 0;
         ll ans = -1e18;
 
         rep(i, N) {
-            ll a, r; cin >> a >> r;
-            
-            ll start = prev_B_last + a;
-            ll end = start + (r - 1) * a;
-            ll sum = (start + end)*r/2;
-            ans = max(ans, prev_C_last + sum);
+            ll x, y; cin >> x >> y;
 
-            prev_B_last = end;
-            prev_C_last = prev_C_last + sum;
+            // 区間の最初
+            ans = max(ans, A + B + x);
+
+            // 区間の間
+            if (x < 0 && B > 0) {
+                int i = B / abs(x);
+                if (i < y) ans = max(ans, A + B*i + x*i*(i + 1)/2);
+            }
+
+            // 区間の最後
+            A = A + y*B + x*y*(y + 1)/2;
+            B = B + y*x;
+            ans = max(ans, A);
         }
 
-        cout << "!" << ans << "!" << endl;
+        cout << ans << endl;
     }
 }
