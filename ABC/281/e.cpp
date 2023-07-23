@@ -22,9 +22,19 @@ int main() {
             cout << ans << " ";
         }
     }
+    else {
+        ll mx = T[K - 1], nex = T[K];
 
-    
-    // else {
-
-    // }
+        for (int i = 1; i < N - M + 1; i++) {
+            // A[i - 1]
+            if (A[i - 1] <= mx) ans -= A[i - 1]
+            // A[i + M - 1]
+            if (A[i + M - 1] < nex) {
+                ans += A[i + M - 1];
+            } 
+            else {
+                ans += nex
+        }
+    }
+    cout << endl;
 }
